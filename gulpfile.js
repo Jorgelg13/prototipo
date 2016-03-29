@@ -39,6 +39,15 @@ var paths = {
 // Reusable pipelines //
 ////////////////////////
 
+gulp.task('dependencia', function() {
+   return gulp.src('./app/index.html')
+      .pipe(wiredep({
+         directory: './app/lib'
+      }))
+      .pipe(gulp.dest('./app'));
+});
+
+
 var lintScripts = lazypipe()
   .pipe($.jshint, '.jshintrc')
   .pipe($.jshint.reporter, 'jshint-stylish');
